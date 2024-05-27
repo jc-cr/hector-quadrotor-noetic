@@ -12,6 +12,5 @@
   
   <include file="$(find takeoff_land)/launch/takeoff_land.launch"/>
   
-  <!-- <include file="$(find publish_navdata)/launch/publish_navdata.launch"/> -->
    
 </launch>

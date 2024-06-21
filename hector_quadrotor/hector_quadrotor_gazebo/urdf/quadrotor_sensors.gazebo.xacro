@@ -6,16 +6,16 @@
   <xacro:macro name="quadrotor_sensors">
         <gazebo>
           <plugin name="quadrotor_imu_sim" filename="libhector_gazebo_ros_imu.so">
-            <updateRate>100.0</updateRate>
+            <updateRate>50.0</updateRate>
             <bodyName>base_link</bodyName>
             <frameId>$(arg base_link_frame)</frameId>
             <topicName>raw_imu</topicName>
-            <rpyOffset>0 0 0</rpyOffset> <!-- deprecated -->
-            <gaussianNoise>0</gaussianNoise>  <!-- deprecated -->
-            <accelDrift>0.5 0.5 0.5</accelDrift>
-            <accelGaussianNoise>0.35 0.35 0.3</accelGaussianNoise>
-            <rateDrift>0.1 0.1 0.1</rateDrift>
-            <rateGaussianNoise>0.05 0.05 0.015</rateGaussianNoise>
+            <accelDrift>0.005 0.005 0.005</accelDrift>
+            <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
+            <rateDrift>0.005 0.005 0.005 </rateDrift>
+            <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
+            <headingDrift>0.005</headingDrift>
+            <headingGaussianNoise>0.005</headingGaussianNoise>
           </plugin>
 
           <plugin name="quadrotor_baro_sim" filename="libhector_gazebo_ros_baro.so">
@@ -46,21 +46,18 @@
             <velocityTopicName>navsat/vel</velocityTopicName>
             <referenceLatitude>29.424349</referenceLatitude>
             <referenceLongitude>-98.491142</referenceLongitude>
-            <referenceHeading>0</referenceHeading>
-            <referenceAltitude>198.12</referenceAltitude>
+            <referenceHeading>90</referenceHeading>
+            <referenceAltitude>200</referenceAltitude>
             <updateRate>4.0</updateRate>
-            <frameId>$(arg base_link_frame)</frameId>
-            <drift>5.0 5.0 5.0</drift>
-            <gaussianNoise>0.01 0.01 0.01</gaussianNoise>
-            <velocityDrift>0 0 0</velocityDrift>
           </plugin>
+
 
           <plugin name="quadrotor_groundtruth_sim" filename="libgazebo_ros_p3d.so">
             <updateRate>100.0</updateRate>
             <bodyName>base_link</bodyName>
             <topicName>ground_truth/state</topicName>
             <gaussianNoise>0.0</gaussianNoise>
-            <frameName>$(arg world_frame)</frameName>
+            <frameName>base_link</frameName>
           </plugin>
 
         </gazebo>
